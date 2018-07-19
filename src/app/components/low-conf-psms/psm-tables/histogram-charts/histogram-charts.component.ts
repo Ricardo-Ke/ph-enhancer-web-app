@@ -11,7 +11,7 @@ import {StatisticsService} from "../../../../services/statistics.service";
 export class HistogramChartsComponent implements OnChanges {
     @Input() activedPsm: Psm;
     @Input() psmType: string;
-
+    @Input() projectId: string;
     private confScoreHistArray = new Array<HistgramBin>();
     private clusterRatioHistArray = new Array<HistgramBin>();
     private clusterSizeHistArray = new Array<HistgramBin>();
@@ -27,18 +27,18 @@ export class HistogramChartsComponent implements OnChanges {
 
     ngOnChanges(): void {
         if (this.psmType == "newid" && this.confScoreHistArray.length < 1) {
-            this.statisticsService.getHistData(this.psmType, "recommConfScore").then(bins=>{this.confScoreHistArray = bins;} );
+            this.statisticsService.getHistData(this.projectId,this.psmType, "recommConfScore").then(bins=>{this.confScoreHistArray = bins;} );
         }
 
         if (this.psmType != "newid" && this.confScoreHistArray.length < 1) {
-            this.statisticsService.getHistData(this.psmType, "confScore").then(bins=>{this.confScoreHistArray = bins;} );
+            this.statisticsService.getHistData(this.projectId,this.psmType, "confScore").then(bins=>{this.confScoreHistArray = bins;} );
         }
 
         if (this.clusterRatioHistArray.length < 1) {
-            this.statisticsService.getHistData(this.psmType, "clusterRatio").then(bins=>{this.clusterRatioHistArray = bins});
+            this.statisticsService.getHistData(this.projectId,this.psmType, "clusterRatio").then(bins=>{this.clusterRatioHistArray = bins});
         }
         if (this.clusterSizeHistArray.length < 1) {
-            this.statisticsService.getHistData(this.psmType, "clusterSize").then(bins=>{this.clusterSizeHistArray = bins});
+            this.statisticsService.getHistData(this.projectId,this.psmType, "clusterSize").then(bins=>{this.clusterSizeHistArray = bins});
         }
         if(this.activedPsm) {
             this.activedConfScoreBin = this.getBinRank(this.confScoreHistArray, this.activedPsm.confidentScore);

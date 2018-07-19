@@ -26,7 +26,7 @@
     //background-color: #282d31;
     text-align: center;
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
 }
 /*
 .nav li {
@@ -95,15 +95,15 @@ nav,navbar-nav,links{
 }
 ul{
 	display:block;
-	width: 1280px;
-    margin: 0 auto;
+    width: 1280px;
+    overflow: hidden;
 }
 .nav ul li{
 	float: left;
     text-align: center;
     padding: 0;
     min-width: 120px;
-    margin-left: 120px;
+    margin-right: 120px;
     border-top: none;
 }
 .nav ul li a{
@@ -130,6 +130,13 @@ ul{
   } 
   .nav ul li{
       margin-left: 30px;
+      margin-right: 0px;
   }
+}
+@media screen and (min-width:991px)and(max-width: 1280px){
+    .nav ul li{
+        margin-left: 120px;
+        margin-right: 0px;
+    }
 }
  

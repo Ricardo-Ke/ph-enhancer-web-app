@@ -1,7 +1,7 @@
 <div style="display: block;background-color: #e6e9eb;">
     <div id="venn">
     </div>
-    <select id="selectProject" [(ngModel)]="selectedProject" (change)="onChange()">
-        <option *ngFor="let p of projects" [ngValue]="p" >{{p}}</option>
+    <select id="selectProject" [(ngModel)]="selectedProject" (ngModelChange)="onChange($event)">
+        <option *ngFor="let p of projects">{{p}}</option>
     </select>
 </div>

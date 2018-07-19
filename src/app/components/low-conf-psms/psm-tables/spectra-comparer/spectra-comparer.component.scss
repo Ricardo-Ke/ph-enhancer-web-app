@@ -21,12 +21,6 @@
     line-height: 40px;
     font-weight: 600;
   }
-  i:before {
-    content: "✪";
-   font-style: normal;
-   font-size: 16px;
-   margin-right: 5px;
-}
 [class^="icon-"]:before, [class*=" icon-"]:before {
     text-decoration: inherit;
     display: inline-block;

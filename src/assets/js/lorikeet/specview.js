@@ -2077,8 +2077,13 @@ var ui = require('jquery-ui');
             	var ionTableDiv = $(getElementSelector(container, elementIds.ionTableDiv));
             	if(ionTableDiv.is(".hideIonTable")){
                     ionTableDiv.removeClass("hideIonTable");
+                    $('#material-like').addClass('material-like-cur');           
                 }else {
                     ionTableDiv.addClass("hideIonTable");
+                    $('#material-like').removeClass('material-like-cur');
+
+                  
+                   
                 }
         });
 

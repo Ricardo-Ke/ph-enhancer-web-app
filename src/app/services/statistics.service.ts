@@ -18,9 +18,9 @@ export class StatisticsService {
                 ) {
     }
 
-    public getHistData(psmType:string, fieldType: string): Promise<HistgramBin[]> {
+    public getHistData(projectId:string,psmType:string, fieldType: string): Promise<HistgramBin[]> {
         let histDataUrl = this.baseUrl + "statistics/histogram?" +
-                "projectId=" + "PXD000021" +
+                "projectId=" + projectId +
                 "&numBins=" + "20" +
                 "&psmType=" + psmType +
                 "&fieldType=" + fieldType;

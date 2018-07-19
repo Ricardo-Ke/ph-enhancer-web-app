@@ -221,55 +221,7 @@
 //  }
 //}
 //
-//@media screen and (max-width: 1035px) {
-//
-//  .col-sm-8 {
-//    -webkit-box-flex: 0;
-//    -ms-flex: 0 0 80%;
-//    flex: 0 0 80%;
-//    max-width: 80%;
-//    position: relative;
-//    width: 100%;
-//    min-height: 1px;
-//    padding-right: 15px;
-//    padding-left: 15px;
-//  }
-//  .position {
-//    width: 792px !important;
-//  }
-//
-//}
-//
-//@media screen and (min-width: 1035px) {
-//
-//  .position {
-//    width: 792px !important;
-//  }
-//
-//}
-//
-//.position_1 {
-//  width: 512px;
-//}
-//
-//@media screen and (max-width: 858px) {
-//  .nowrap {
-//    flex-wrap: wrap;
-//  }
-//}
-//
-//.nowrap {
-//  padding-left: 15px;
-//  padding-right: 15px;
-//}
-//
-//.new-col-md-8 {
-//  margin-right: 10px;
-//}
-//
-//.selected-row {
-//  color: palevioletred;
-//}
+
 
 #spectrum_table{ height:772px;  overflow: auto;}
 
@@ -280,9 +232,11 @@
 .material-like {
   background: #FFF;
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
-  height:772px;
+  height:770px;
   position:relative;
-  z-index:100;
+}
+.material-like-cur{
+  height: auto;
 }
 .meterial-cur{
   height:auto;

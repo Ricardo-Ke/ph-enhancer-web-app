@@ -1,24 +1,25 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit,Output,EventEmitter} from '@angular/core';
 import * as d3 from 'd3';
 import * as venn from 'venn.js/venn.js';
 import {StatisticsService} from "../../../../services/statistics.service";
 import {VennData} from "../../../../model/vennData";
 import {Config} from "../../../../model/config";
-
-
+import { document } from 'app/typescripts/free/utils/facade/browser';
+import{Chart3Component} from "../chart3/chart3.component"
+import {Router} from "@angular/router";
 @Component({
     selector: 'app-chart1',
     templateUrl: './chart1.component.html',
     styleUrls: ['./chart1.component.scss']
 })
 export class Chart1Component implements OnInit {
+    @Output()
+ change:EventEmitter<ChangeProject>=new EventEmitter();
     private sets = null;
     private vennData : VennData;
-
     projects = [Config.defaultProject];
-    selectedProject = Config.defaultProject;
-
-    constructor(private statisticsService: StatisticsService) {
+    selectedProject=Config.defaultProject;
+    constructor(private router: Router,private statisticsService: StatisticsService) {
         this.sets = [
             {"sets": [0], "label": "Original Identified", "size": 500, "addInfo": ", 400 unmatched"},
             {"sets": [1], "label": "Cluster Matched", "size": 400, "addInfo": ", 300 new identified"},
@@ -29,6 +30,7 @@ export class Chart1Component implements OnInit {
             {"sets": [1, 2], "size": 30},
             {"sets": [0, 1, 2], "size": 30},
         ]
+
     }
 
     ngOnInit() {
@@ -41,13 +43,14 @@ export class Chart1Component implements OnInit {
         if(this.selectedProject== null){
             this.selectedProject = Config.defaultProject;
         }
+        document.getElementById('selectProject');
         this.statisticsService.getVennData(this.selectedProject)
-            .then( vennData => {this.vennData = vennData;
+            .then( vennData => {
+                this.vennData = vennData;
                 this.setDataset();
                 this.drawVennDiagram();
             }).catch(this.handleError);
     }
-
     setDataset(){
         this.sets = [
             {"sets": [0], "label": "Original Identified", "size": this.vennData.prePSM_no, "addInfo": ", " + this.vennData.prePSM_not_matched_no + " unmatched"},
@@ -59,7 +62,6 @@ export class Chart1Component implements OnInit {
             {"sets": [1, 2], "size": this.vennData.prePSM_low_conf_no},
             {"sets": [0, 1, 2], "size": this.vennData.prePSM_low_conf_no, "addInfo":", " + this.vennData.better_PSM_no + " got new recommend"},
         ]
-        console.log(this.sets);
     }
 
     drawVennDiagram(){
@@ -110,10 +112,16 @@ export class Chart1Component implements OnInit {
                     .style("stroke-opacity", 0);
             });
     }
+  set(value){
+    document.getElementById('selectProject').value=value;
+    this.selectedProject=value;
+  }
+    onChange(event){
+        this.getVennDataAndDraw();
+       this.change.emit(new ChangeProject(event));
+      
 
-    onChange(value){
-        this.getVennDataAndDraw()
-    }
+    }    
     /* can not show each intersection's number, don't use it
     ngOnInit() {
         var sets = [
@@ -278,3 +286,7 @@ export class Chart1Component implements OnInit {
             }).catch(this.handleError);
     }
 }
+export class ChangeProject {
+    constructor(public  selectedProject: string) {
+    }
+  }

@@ -1,9 +1,10 @@
 <div class="navbar">
 <p><span>Metrics</span></p>
 <div class="row">
-    <app-chart1 class="layout" [projectId]="projectId"></app-chart1>
+    <app-chart1 class="layout" [projectId]="projectId" (change)="changeHandler($event)"></app-chart1>
     <!--<app-chart1 class="col-xd-5 card ml-2"></app-chart1>-->
-    <app-chart3 class="layout modify" [vennDataList]="vennDataList"></app-chart3>
+    <app-chart3 class="layout modify" [vennDataList]="vennDataList" [changeProject]="changeProject"
+    ></app-chart3>
     <!--<app-chart4 class="col-xd-3 card ml-2"></app-chart4>-->
 </div>
 <p><span>Description</span></p>

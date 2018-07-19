@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {StatisticsService} from "../../../services/statistics.service";
 import {VennData} from "../../../model/vennData";
+import{ChangeProject} from "./chart1/chart1.component"
 
 @Component({
   selector: 'app-main-left-metrics',
@@ -10,8 +11,7 @@ import {VennData} from "../../../model/vennData";
 export class MainLeftMetricsComponent implements OnInit {
 
     vennDataList:VennData[] = new Array();
-
-
+    changeProject: ChangeProject = new ChangeProject('');
    constructor(private statisticsService: StatisticsService) {
         // let venn = {
         //     "projectId": "PXD000021",
@@ -59,6 +59,7 @@ export class MainLeftMetricsComponent implements OnInit {
 
     ngOnInit(): void {
         this.setStatckedVennData();
+        this.changeHandler(this.changeProject);
     }
 
     setStatckedVennData() {
@@ -71,7 +72,9 @@ export class MainLeftMetricsComponent implements OnInit {
     private handleError(error: any): void {
         console.log('A error occurred', error);
     }
-
+    changeHandler(event: ChangeProject){
+        this.changeProject = event;
+    }
    
 }
 
